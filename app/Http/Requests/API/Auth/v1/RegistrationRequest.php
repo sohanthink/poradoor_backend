@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\API\Auth\v1;
 
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegistrationRequest extends FormRequest
@@ -11,7 +12,7 @@ class RegistrationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,11 @@ class RegistrationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "name" => ['required','string','max:255'], 
+            "email" => ['required','email','max:255','unique:users,email'], 
+            "number" => ['required','unique:users,number','max:255'], 
+            "password" => ['required','confirmed','max:255'], 
+            // "password" => ['required','confirmed', Password::default()], 
         ];
     }
 }
