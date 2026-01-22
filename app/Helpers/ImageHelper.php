@@ -19,7 +19,7 @@ class ImageHelper
      * @param string $collectionName The name of the media collection
      * @return Media|null
      */
-    public static function uploadImage($model, Request $request, string $fieldName)
+    public static function uploadImage($model, Request $request, string $fieldName = "image")
     {
         if (!$request->hasFile($fieldName)) {
             return null;

@@ -8,7 +8,7 @@ use App\Traits\CRUDOparation;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Services\Api\Auth\v1\AuthService;
+use App\Services\API\Auth\v1\AuthService;
 use App\Http\Requests\API\Auth\v1\LoginRequest;
 use App\Http\Requests\API\Auth\v1\RegistrationRequest;
 
@@ -28,7 +28,7 @@ class AuthenticationController extends Controller
     private function success_user_response(User $user, string $message ,int $code): JsonResponse{
         return $this->apiSuccess(data: [
             "user" => $user,
-            "token" => $user->createToken(name: "Api Token of $user->name")->plainTextToken
+            "token" => $user->createToken(name: "API Token of $user->name")->plainTextToken
         ], message: $message,code: $code);
     }
     public function register(RegistrationRequest $request): JsonResponse

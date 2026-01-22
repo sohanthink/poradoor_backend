@@ -5,7 +5,7 @@ namespace App\Traits;
 use Illuminate\Http\JsonResponse;
 
 trait APIResponse{
-    private function success($data, $message, $code = 200): JsonResponse
+    private function success($message, $data = [], $code = 200): JsonResponse
     {
         return response()->json([
             'status' => 'success',

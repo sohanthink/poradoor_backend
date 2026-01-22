@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -15,14 +16,25 @@ return new class extends Migration
             $table->id();
             $table->tinyInteger('role')->default(2);
             $table->string('name');
-            $table->string('email')->unique()->nullable();
-            $table->string('number')->unique()->nullable();
+            $table->string('username',50)->unique();
+            $table->string('email')->unique();
+            $table->string('number')->unique();
             $table->string('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
+
+        DB::table('users')->insert([
+            "name" => "Admin",
+            "username" => "admin",
+            "email" => "admin@email.com",
+            "number" => "01200000000",
+            "password" => Hash::make("12345678"),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
