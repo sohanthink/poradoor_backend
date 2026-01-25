@@ -29,9 +29,11 @@ class ProductRequest extends FormRequest
             "images.*" => ["file", "image", "mimes:png,jpg,jpeg,webp", "max:2048"],
             "small_desc" => ["required","string","max:512"],
             "desc" => ["required","string"],
+            "price" => ["required","numeric","min:1"],
+            "regular_price" => ["nullable","numeric","min:1"],
             "atributes" => ["nullable","string"],
-            "quentity" => ["required","numeric","min:1"],
-            "alert_quentity" => ["required","numeric","min:1"],
+            "quantity" => ["required","numeric","min:1"],
+            "alert_quantity" => ["required","numeric","min:1"],
             "status" => ["nullable","sometimes","numeric"],
             "category_id" => ["nullable","exists:categories,id"],
         ];

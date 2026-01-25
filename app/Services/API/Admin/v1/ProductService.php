@@ -3,7 +3,7 @@
 namespace App\Services\API\Admin\v1;
 
 use App\Models\Product;
-use App\DTOs\Product\Create;
+use App\DTOs\Product\ProductDTO;
 use App\Helpers\ImageHelper;
 use App\Http\Resources\API\v1\ProductResource;
 use App\Repositories\API\Admin\v1\ProductRepository;
@@ -35,7 +35,7 @@ class ProductService
      */
     public function save_product(array $data, Product $product = null): Product
     {
-        $dto = Create::fromRequest(data: $data);
+        $dto = ProductDTO::fromRequest(data: $data);
         $product = $this->repository->store(dto: $dto, product: $product);
         if (request()->hasFile('hero_image')) {
             ImageHelper::uploadImage($product, request(), 'hero_image');

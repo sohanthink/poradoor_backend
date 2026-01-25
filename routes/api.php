@@ -1,7 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\Front\v1\CartController;
+use App\Http\Controllers\API\Front\v1\ShopController;
 use App\Http\Controllers\API\Front\v1\UserController;
+use App\Http\Controllers\API\Front\v1\OrderController;
+use App\Http\Controllers\API\Front\v1\FrontendController;
 use App\Http\Controllers\API\Auth\v1\AuthenticationController;
 
 Route::group(['prefix' => 'v1/'], function (){
@@ -19,7 +23,25 @@ Route::group(['prefix' => 'v1/'], function (){
         Route::patch('/update', 'update');
         Route::patch('/update-password',  'update_password');
         Route::patch('/update-avatar', 'update_avatar');
+        });
+    Route::controller(FrontendController::class)->group(function (){
+        Route::post('/track-order',  'track_order');
+        Route::post('/save-contact',  'save_contact');
     });
+    Route::prefix('/cart')->controller(CartController::class)->group(function (){
+        Route::post('/',  'index');
+        Route::post('/add-to-cart',  'add_to_cart');
+        Route::post('/remove-from-cart',  'remove_from_cart');
+        Route::post('/change-attributes',  'change_attributes');
+        Route::post('/change-quantity',  'change_quentity');
+    });
+    Route::controller(ShopController::class)->prefix('shop/')->group(function (){
+        Route::post('/products',   'products');
+        Route::post('/categories',  'categories');
+        Route::post('/products/filter',  'product_filter');
+        Route::post('/product/{product:slug}',  'product_details');
+    });
+    Route::post('place-order',[OrderController::class, "place_order"]);
 });
 
 

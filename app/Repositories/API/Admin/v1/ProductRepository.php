@@ -3,7 +3,7 @@
 namespace App\Repositories\API\Admin\v1;
 
 use App\Models\Product;
-use App\DTOs\Product\Create;
+use App\DTOs\Product\ProductDTO;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProductRepository
@@ -18,11 +18,11 @@ class ProductRepository
     }
     /**
      * Save A Product Instance To The Database
-     * @param Create $dto
+     * @param ProductDTO $dto
      * @param Product $product
      * @return Product
      */
-    public function store(Create $dto, Product $product = null): Product{
+    public function store(ProductDTO $dto, Product $product = null): Product{
         if($product){
             $product->update(attributes: $dto->toArray());
             return $product;

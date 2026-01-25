@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Services\API\Front;
+namespace App\Services\API\Front\V1;
 
-use App\Models\User;
 use App\DTOs\User\Update;
 use App\Helpers\ImageHelper;
 use Illuminate\Support\Facades\Hash;

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API\Front\v1;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
-use App\Services\API\Front\UserService;
+use App\Services\API\Front\v1\UserService;
 use App\Http\Resources\API\v1\UserResource;
 use App\Response\API\Front\v1\UserResponses;
 use App\Http\Requests\API\Front\User\v1\UpdateUserRequest;

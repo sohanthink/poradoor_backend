@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Category;
 use App\Traits\ModelBasics;
+use Attribute;
 use Spatie\Sluggable\HasSlug;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\Sluggable\SlugOptions;
@@ -17,6 +18,9 @@ class Product extends Model implements HasMedia
     protected $guarded = ["id","created_at","updated_at"]; 
     public function category(): BelongsTo{
         return $this->belongsTo(related: Category::class);
+    }
+    public function get_price(): int{
+        return $this->price;
     }
     public function getSlugOptions() : SlugOptions
     {

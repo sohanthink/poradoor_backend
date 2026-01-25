@@ -18,10 +18,12 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->nullable();
             $table->string('small_desc',512);
+            $table->decimal('price');
+            $table->decimal('regular_price')->nullable();
             $table->text('desc');
             $table->text('atributes')->nullable();
-            $table->integer('quentity');
-            $table->integer('alert_quentity');
+            $table->integer('quantity');
+            $table->integer('alert_quantity');
             $table->tinyInteger('status')->default(Status::PUBLIC);
             $table->foreignIdFor(Category::class);
             $table->timestamps();
