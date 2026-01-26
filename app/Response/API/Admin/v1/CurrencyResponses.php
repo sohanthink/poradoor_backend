@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\API\Admin\v1;
+namespace App\Response\API\Admin\v1;
 
-class OrderService
+class CurrencyResponses
 {
     /**
      * Create a new class instance.

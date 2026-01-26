@@ -22,7 +22,14 @@ class CartQuentityRequest extends FormRequest
     public function rules(): array
     {
         return [
+            "guest_id" => ["nullable","sometimes","string","max:50"],
+            "cart_item_id" => ["required","exists:cart_items,id"],
             "quantity" => ["required","numeric","min:1"],
+        ];
+    }
+    public function messages(): array{
+        return [
+            "cart_item_id.exists" => "Cart Item Not Found",
         ];
     }
 }

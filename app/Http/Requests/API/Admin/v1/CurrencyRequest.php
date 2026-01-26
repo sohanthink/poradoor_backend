@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests\API\Admin\V1\Cart;
+namespace App\Http\Requests\API\Admin\v1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CartRequest extends FormRequest
+class CurrencyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,10 +22,7 @@ class CartRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "guest_id" => ["nullable","sometimes","string","max:50"],
-            "product_id" => ["required","exists:products,id"],
-            "quantity" => ["required","numeric","min:1"],
-            "attributes" => ["nullable","sometimes","string"],
+            //
         ];
     }
 }

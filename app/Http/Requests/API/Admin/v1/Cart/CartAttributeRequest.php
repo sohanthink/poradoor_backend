@@ -22,7 +22,14 @@ class CartAttributeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "attributes" => ["nullable","sometimes","string"],
+            "guest_id" => ["nullable","sometimes","string","max:50"],
+            "cart_item_id" => ["required","exists:cart_items,id"],
+            "attributes" => ["required","string"],
+        ];
+    }
+    public function messages(): array{
+        return [
+            "cart_item_id.exists" => "Cart Item Not Found",
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 trait APIResponse{
     private function success($message, $data = [], $code = 200): JsonResponse
@@ -24,4 +25,20 @@ trait APIResponse{
             'message' => $message
         ], $code);
     }
+
+    private function throw_error_with_condition($condition = true, $message, $code)
+    {
+        throw_if(
+            condition: $condition,
+            exception: function () use($message, $code): HttpResponseException{
+                return new HttpResponseException($this->error($message, $code));
+            }
+        );
+    }
+    private function throw_error($message, $code): never
+    {
+        throw new HttpResponseException(response: $this->error($message, $code));
+    }
+
+
 }

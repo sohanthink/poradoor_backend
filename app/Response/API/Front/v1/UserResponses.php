@@ -4,7 +4,7 @@ namespace App\Response\API\Front\v1;
 
 use App\Traits\APIResponse;
 use Illuminate\Http\JsonResponse;
-use App\Http\Resources\API\v1\UserResource;
+use App\Http\Resources\API\Front\V1\UserResource;
 
 class UserResponses
 {

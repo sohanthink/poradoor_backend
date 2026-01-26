@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API\Front\v1;
 
-use App\Models\CartItem;
+use App\Http\Requests\API\Admin\v1\Cart\CartRemoveRequest;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Services\API\Front\v1\CartService;
@@ -23,29 +23,29 @@ class CartController extends Controller
         return $this->cart_response->cart_items_response(cart: $this->cart_service->get_cart_items());
     }
     public function add_to_cart(CartRequest $request): JsonResponse{
-        $data = $this->cart_service->add_to_cart(data: $request->validated());
-        if($data){    
-            return $this->cart_response->add_to_cart_response(data: $data);
+        $cart_item = $this->cart_service->add_to_cart(data: $request->validated());
+        if($cart_item){    
+            return $this->cart_response->add_to_cart_response(cart_item: $cart_item);
         }
         return $this->cart_response->add_to_cart_error_response();
     }
-    public function remove_from_cart(CartItem $cartItem): JsonResponse{
-        if($this->cart_service->remove_from_cart(cartItem: $cartItem)){    
+    public function remove_from_cart(CartRemoveRequest $request): JsonResponse{
+        if($this->cart_service->remove_from_cart(data: $request->all())){    
             return $this->cart_response->remove_cart_item_response();
         }
         return $this->cart_response->add_to_cart_error_response();
     }
-    public function change_attributes(CartItem $cartItem, CartAttributeRequest $request): JsonResponse{
-        $data = $this->cart_service->change_column(cartItem: $cartItem,data: $request->validated());
+    public function change_attributes(CartAttributeRequest $request): JsonResponse{
+        $data = $this->cart_service->change_attributes(data: $request->validated());
         if($data){    
-            return $this->cart_response->attribute_change_response(data: $data);
+            return $this->cart_response->attribute_change_response(cart_item: $data);
         }
         return $this->cart_response->error_response();
     }
-    public function change_quentity(CartItem $cartItem, CartQuentityRequest $request): JsonResponse{
-        $data = $this->cart_service->change_column(cartItem: $cartItem,data: $request->validated());
+    public function change_quentity(CartQuentityRequest $request): JsonResponse{
+        $data = $this->cart_service->change_quentity(data: $request->validated());
         if($data){    
-            return $this->cart_response->quentity_change_response(data: $data);
+            return $this->cart_response->quentity_change_response(cart_item: $data);
         }
         return $this->cart_response->error_response();
     }

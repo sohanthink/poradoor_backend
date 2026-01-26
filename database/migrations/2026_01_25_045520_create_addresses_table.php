@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger('type')->default(AddressType::USER_SAVED->value);
+            $table->string('guest_id')->nullable()->unique();
             $table->foreignIdFor(User::class)->nullable()->nullable()->cascadeOnDelete();
             $table->foreignIdFor(Order::class)->nullable();
             $table->string('name');

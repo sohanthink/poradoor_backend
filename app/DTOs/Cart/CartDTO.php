@@ -8,20 +8,22 @@ class CartDTO
 {
     use DTOBasics;
     public function __construct(
-       string|null $guest_id = null,
-       int|null $user_id,
-       int $product_id,
-       int $quantity,
-       string $attributes = null,
+       public string|null $guest_id = null,
+       public int|null $user_id = null,
+       public int $product_id,
+       public int $quantity,
+       public string|null $attributes = null,
     ){}
-     public static function fromRequest(array $data): self
+    public static function fromRequest(array $data): self
     {
-        return new self(
+        
+        $obj = new self(
             guest_id: $data['guest_id'] ?? null,
-            user_id: auth()->user() ?? null,
-            product_id: $data['product_id'],
-            quantity: $data['quantity'],
+            user_id: auth()->user()?->id ?? null,
+            product_id: (int)$data['product_id'],
+            quantity: (int)$data['quantity'],
             attributes: $data['attributes'] ?? null,
         );
+        return $obj; 
     }
 }

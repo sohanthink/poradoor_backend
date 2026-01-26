@@ -4,7 +4,7 @@ namespace App\Enums;
 
 enum ShippingMethod: int {
     case STANDARD = 0;
-    case EXPEDITED = 2;
-    case OVERNIGHT = 3;
-    case SAMEDAY = 4;
+    case EXPEDITED = 1;
+    case OVERNIGHT = 2;
+    case SAMEDAY = 3;
 }

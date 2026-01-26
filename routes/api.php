@@ -29,11 +29,11 @@ Route::group(['prefix' => 'v1/'], function (){
         Route::post('/save-contact',  'save_contact');
     });
     Route::prefix('/cart')->controller(CartController::class)->group(function (){
-        Route::post('/',  'index');
-        Route::post('/add-to-cart',  'add_to_cart');
-        Route::post('/remove-from-cart',  'remove_from_cart');
-        Route::post('/change-attributes',  'change_attributes');
-        Route::post('/change-quantity',  'change_quentity');
+        Route::get('/',  'index');
+        Route::post('/add-to-cart',  'add_to_cart')->middleware('auth:sanctum');
+        Route::delete('/remove-from-cart',  'remove_from_cart');
+        Route::patch('/change-attributes',  'change_attributes');
+        Route::patch('/change-quantity',  'change_quentity');
     });
     Route::controller(ShopController::class)->prefix('shop/')->group(function (){
         Route::post('/products',   'products');

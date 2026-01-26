@@ -8,6 +8,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -53,7 +54,10 @@ class User extends Authenticatable implements HasMedia
             'password' => 'hashed',
         ];
     }
-    public function cart_items(){
-        return $this->hasMany(CartItem::class);
+    public function cart_items(): HasMany{
+        return $this->hasMany(CartItem::class,"user_id");
+    }
+    public function saved_address(){
+        return $this->hasOne(Address::class);
     }
 }

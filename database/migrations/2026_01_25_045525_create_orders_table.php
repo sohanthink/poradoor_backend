@@ -22,16 +22,17 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('order_number');
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->string('guest_id')->nullable()->unique();
+            $table->foreignIdFor(User::class)->nullable()->constrained()->nullOnDelete();
             $table->foreignIdFor(Address::class)->nullable()->constrained()->nullOnDelete();
             $table->foreignIdFor(Coupon::class)->nullable()->constrained()->nullOnDelete();
             $table->tinyInteger('payment_status')->default(PaymentStatus::UNPAID->value);
             $table->tinyInteger('order_status')->default(OrderStatus::PENDING->value);
             $table->tinyInteger('payment_method')->default(PaymentMethod::CASH_ON_DELIVARY->value);
             $table->tinyInteger('shipping_method')->default(ShippingMethod::STANDARD->value);
-            $table->decimal('total_amount');
-            $table->decimal('subtotal_amount');
-            $table->decimal('shipping_charge');
+            $table->decimal('total_amount')->nullable();
+            $table->decimal('subtotal_amount')->nullable();
+            $table->decimal('shipping_charge')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();
         });

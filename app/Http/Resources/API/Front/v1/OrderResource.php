@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\API\Admin\V1;
+namespace App\Http\Resources\API\Front\V1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CouponResource extends JsonResource
+class OrderResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,6 +14,6 @@ class CouponResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return $this->resource->to_array();
     }
 }

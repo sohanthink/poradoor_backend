@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\API\v1;
+namespace App\Http\Resources\API\Admin\V1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CartResource extends JsonResource
+class CurrencyResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,8 +14,6 @@ class CartResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
-            
-        ];
+        return parent::toArray($request);
     }
 }

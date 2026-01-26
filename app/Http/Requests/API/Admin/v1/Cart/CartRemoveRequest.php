@@ -4,7 +4,7 @@ namespace App\Http\Requests\API\Admin\V1\Cart;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CartRequest extends FormRequest
+class CartRemoveRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,9 +23,12 @@ class CartRequest extends FormRequest
     {
         return [
             "guest_id" => ["nullable","sometimes","string","max:50"],
-            "product_id" => ["required","exists:products,id"],
-            "quantity" => ["required","numeric","min:1"],
-            "attributes" => ["nullable","sometimes","string"],
+            "cart_item_id" => ["required","exists:cart_items,id"],
+        ];
+    }
+    public function messages(): array{
+        return [
+            "cart_item_id.exists" => "Cart Item Not Found",
         ];
     }
 }
