@@ -2,10 +2,12 @@
 
 namespace App\Response\API\Admin\v1;
 
-use App\Http\Resources\API\v1\CategoryResource;
+
 use App\Models\Category;
 use App\Traits\APIResponse;
 use Illuminate\Http\JsonResponse;
+use App\Http\Resources\API\Admin\v1\CategoryResource;
+
 
 class CategoryResponses
 {

@@ -22,6 +22,9 @@ class ProductController extends Controller
     {
         return $this->product_service->get_products();
     }
+    public function show(Product $product){
+        return $product;
+    }
     public function store(ProductRequest $request, Product $product = null): JsonResponse
     {
         $is_create = $product ? false : true;

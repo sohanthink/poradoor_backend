@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\API\Admin\V1\Cart;
+namespace App\Http\Requests\API\Front\Cart;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CartAttributeRequest extends FormRequest
+class CartRemoveRequest extends FormRequest
 {
-     /**
+    /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
@@ -24,7 +24,6 @@ class CartAttributeRequest extends FormRequest
         return [
             "guest_id" => ["nullable","sometimes","string","max:50"],
             "cart_item_id" => ["required","exists:cart_items,id"],
-            "attributes" => ["required","string"],
         ];
     }
     public function messages(): array{

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\API\Front\V1;
+namespace App\Repositories\API\Front\v1;
 
 use App\DTOs\Address\AddressDTO;
 use App\Models\Address;
@@ -25,10 +25,10 @@ class AddressRepository{
         return null;
     }
     public function update_address(Address $address, AddressDTO $dto){
-        $address->update($dto->toArray());
+        $address->update($dto->to_array());
         return $address;
     }
     public function save_address(AddressDTO $dto){
-        return Address::create($dto->toArray());
+        return Address::create($dto->to_array());
     }
 }

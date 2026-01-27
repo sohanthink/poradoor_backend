@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Response\API\Front\V1;
+namespace App\Response\API\Front\v1;
 
 use App\Traits\APIResponse;
 use Illuminate\Http\JsonResponse;
-use App\Http\Resources\API\Front\V1\CartResource;
+use App\Http\Resources\API\Front\v1\CartResource;
 
 class CartResponses
 {

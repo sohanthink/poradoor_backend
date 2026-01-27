@@ -2,8 +2,9 @@
 
 namespace App\Services\API\Front\V1;
 
-use App\DTOs\User\Update;
+
 use App\Helpers\ImageHelper;
+use App\DTOs\User\UserUpdateDTO;
 use Illuminate\Support\Facades\Hash;
 use App\Repositories\API\Front\v1\UserRepository;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -21,11 +22,11 @@ class UserService{
      * @return bool
      */
     public function update_user_data(array $data): bool{
-        $userUpdateData = new Update(
+        $userUpdateData = new UserUpdateDTO(
             name: $data['name'],
-            email: $data['email'],
-            number: $data['number'],
-            address: $data['address'],
+            email: $data['email'] ?? null,
+            number: $data['number'] ?? null,
+            address: $data['address'] ?? null,
         );
         return $this->repository->update_user_model( dto: $userUpdateData, user: $this->user);
     }

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\API\Front\v1;
 
-use App\Http\Requests\API\Admin\v1\Cart\CartRemoveRequest;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Services\API\Front\v1\CartService;
 use App\Response\API\Front\v1\CartResponses;
-use App\Http\Requests\API\Admin\v1\Cart\CartRequest;
-use App\Http\Requests\API\Admin\v1\Cart\CartQuentityRequest;
-use App\Http\Requests\API\Admin\v1\Cart\CartAttributeRequest;
+use App\Http\Requests\API\Front\Cart\CartRequest;
+use App\Http\Requests\API\Front\Cart\CartRemoveRequest;
+use App\Http\Requests\API\Front\Cart\CartQuentityRequest;
+use App\Http\Requests\API\Front\Cart\CartAttributeRequest;
 
 class CartController extends Controller
 {

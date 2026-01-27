@@ -24,12 +24,13 @@ class ProductRepository
      */
     public function store(ProductDTO $dto, Product $product = null): Product{
         if($product){
-            $product->update(attributes: $dto->toArray());
+            $product->update(attributes: $dto->to_array());
             return $product;
         }
-        return Product::create(attributes: $dto->toArray());
+        return Product::create(attributes: $dto->to_array());
     }
     public function delete(Product $product): bool|null{
+        $product->clearMediaCollection();
         return $product->delete();
     }
 }

@@ -17,7 +17,7 @@ class AuthRepository
      * @return User
      */
     public function store_user(Create $dto): User{
-        return User::create(attributes: $dto->toArray());
+        return User::create(attributes: $dto->to_array());
     }
     /**
      * A repository function to get user instance by email field

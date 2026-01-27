@@ -26,10 +26,10 @@ class CategoryRepository
      */
     public function store(Create $dto, Category $category = null): Category{
         if($category){
-            $category->update(attributes: $dto->toArray());
+            $category->update(attributes: $dto->to_array());
             return $category;
         }
-        return Category::create(attributes: $dto->toArray());
+        return Category::create(attributes: $dto->to_array());
     }
 
     /**
@@ -39,6 +39,7 @@ class CategoryRepository
      */
 
     public function delete(Category $category): bool|null{
+        $category->clearMediaCollection();
         return $category->delete();
     }
 

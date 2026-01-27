@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\API\Front\v1\OrderService;
 use App\Response\API\Front\v1\OrderResponse;
-use App\Http\Requests\API\Admin\v1\OrderRequest;
+use App\Http\Requests\API\Front\OrderRequest;
 
 class OrderController extends Controller
 {
@@ -19,7 +19,7 @@ class OrderController extends Controller
     public function place_order(OrderRequest $request){
         $order = $this->order_service->place_order($request->validated());
         if($order){
-            $this->order_response->order_success_response($order);
+            return $this->order_response->order_success_response($order);
         }
         return $this->order_response->order_error_response();
     }

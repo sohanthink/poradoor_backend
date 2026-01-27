@@ -36,10 +36,11 @@ Route::group(['prefix' => 'v1/'], function (){
         Route::patch('/change-quantity',  'change_quentity');
     });
     Route::controller(ShopController::class)->prefix('shop/')->group(function (){
-        Route::post('/products',   'products');
-        Route::post('/categories',  'categories');
-        Route::post('/products/filter',  'product_filter');
-        Route::post('/product/{product:slug}',  'product_details');
+        Route::get('/products',   'products');
+        Route::get('/products/filter',  'product_filter');
+        Route::get('/categories',  'categories');
+        Route::get('/product/{product:slug}',  'product_details');
+        Route::get('/category/{category:slug}',  'category_details');
     });
     Route::post('place-order',[OrderController::class, "place_order"]);
 });

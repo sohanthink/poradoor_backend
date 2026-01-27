@@ -5,7 +5,7 @@ namespace App\Services\API\Admin\v1;
 use App\Models\Category;
 use App\Helpers\ImageHelper;
 use App\DTOs\Category\Create;
-use App\Http\Resources\API\v1\CategoryResource;
+use App\Http\Resources\API\Admin\v1\CategoryResource;
 use App\Repositories\API\Admin\v1\CategoryRepository;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -38,8 +38,12 @@ class CategoryService
     {
         $dto = Create::fromRequest(data: $data);
         $category = $this->repository->store(dto: $dto, category: $category);
+        $media = null;
         if (request()->hasFile(key: 'image')) {
-            ImageHelper::uploadImage(model: $category, request: request());
+            $media = ImageHelper::uploadImage(model: $category, request: request());
+            if($media){
+                $category->image_url = $media?->getUrl();
+            }
         }
         return $category;
     }
