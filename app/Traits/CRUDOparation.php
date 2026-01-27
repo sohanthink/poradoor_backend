@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Traits\CRUD; // ফোল্ডার নাম সাধারণত বহুবচন (Traits) হয়
+namespace App\Traits; // ফোল্ডার নাম সাধারণত বহুবচন (Traits) হয়
 
 use App\Helpers\ImageHelper;
 use Illuminate\Support\Facades\DB;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Http\JsonResponse;
 
-trait CrudOperation
+trait CRUDOparation
 {
     /**
      * Common Success Response

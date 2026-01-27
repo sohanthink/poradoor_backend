@@ -155,6 +155,14 @@ if (!function_exists('price')) {
     }
 
 }
+if (!function_exists('get_price')) {
+
+    function get_price($product)
+    {
+        return $product->price;
+    }
+
+}
 
 
 if (!function_exists('cart_count')) {

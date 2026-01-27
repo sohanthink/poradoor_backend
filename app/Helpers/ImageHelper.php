@@ -19,16 +19,23 @@ class ImageHelper
      * @param string $collectionName The name of the media collection
      * @return Media|null
      */
-    public static function uploadImage($model, Request $request, string $fieldName)
+    public static function uploadImage($model, Request $request, string $fieldName = "image")
     {
         if (!$request->hasFile($fieldName)) {
-            return null; // No image uploaded
+            return null;
         }
 
         try {
-            return $model->addMedia($request->file($fieldName))
+            $old_image = $model->getFirstMedia($fieldName);
+            $result = $model->addMedia($request->file($fieldName))
                 ->usingName(Str::slug($model->name) . '-' . uniqid())
                 ->toMediaCollection($fieldName);
+            if($result && $old_image){
+                try {
+                    $old_image->delete();
+                } catch (\Throwable $th){}
+            }
+            return $result;
         } catch (\Exception $e) {
             // Log the error (optional)
             \Log::error('Image upload failed for ' . get_class($model) . ': ' . $e->getMessage());
