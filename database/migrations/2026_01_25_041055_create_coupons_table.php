@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\CouponType;
+use App\Enums\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,10 +18,10 @@ return new class extends Migration
             $table->tinyInteger('type')->default(CouponType::PERCENTAGE->value);
             $table->string('coupon',50);
             $table->integer('limit');
-            $table->integer('usage');
+            $table->integer('usage')->default(0);
             $table->integer('value');
-            $table->text('product_ids')->nullable();
-            $table->text('except_ids')->nullable();
+            $table->dateTime('vaild_till')->nullable();
+            $table->boolean('status')->default(Status::PUBLIC);
             $table->timestamps();
         });
     }

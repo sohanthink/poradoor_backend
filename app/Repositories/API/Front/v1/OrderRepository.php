@@ -3,6 +3,7 @@
 namespace App\Repositories\API\Front\V1;
 
 use App\DTOs\Order\OrderUpdateDTO;
+use App\Models\Coupon;
 use App\Models\Order;
 
 class OrderRepository{

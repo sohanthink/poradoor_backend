@@ -59,4 +59,8 @@ class ProductService
     {
         return $this->repository->delete($product);
     }
+
+    public function filter($data){
+        return $this->repository->filter($data);
+    }
 }

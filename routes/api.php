@@ -42,7 +42,7 @@ Route::group(['prefix' => 'v1/'], function (){
         Route::get('/product/{product:slug}',  'product_details');
         Route::get('/category/{category:slug}',  'category_details');
     });
-    Route::post('place-order',[OrderController::class, "place_order"]);
+    Route::post('place-order',[OrderController::class, "place_order"])->middleware('transaction');
 });
 
 

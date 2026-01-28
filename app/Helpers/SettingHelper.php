@@ -10,20 +10,37 @@ use App\Services\FlashSaleService;
 
 
 
-if (!function_exists('isFlashAvailable')) {
-    function isFlashAvailable($product)
-    {
-        $flashSaleService = app(FlashSaleService::class);
-        return $flashSaleService->isFlashAvailable($product);
+// if (!function_exists('isFlashAvailable')) {
+//     function isFlashAvailable($product)
+//     {
+//         $flashSaleService = app(FlashSaleService::class);
+//         return $flashSaleService->isFlashAvailable($product);
 
+//     }
+// }
+// if (!function_exists('flashProduct')) {
+//     function flashProduct($product)
+//     {
+//         $flashSaleService = app(FlashSaleService::class);
+//         return $flashSaleService->flashProduct($product);
+
+//     }
+// }
+
+if (!function_exists('calculatePercentageAmount')) {
+    function calculatePercentageAmount(float $total, float $percentage): float 
+    {
+        return ($total * $percentage) / 100;
     }
 }
-if (!function_exists('flashProduct')) {
-    function flashProduct($product)
+if (!function_exists('calculatePercentageRatio')) {
+    function calculatePercentageRatio(float $total, float $amount): float 
     {
-        $flashSaleService = app(FlashSaleService::class);
-        return $flashSaleService->flashProduct($product);
-
+        if ($total <= 0) {
+            return 0;
+        }
+    
+        return ($amount / $total) * 100;
     }
 }
 

@@ -29,6 +29,7 @@ class OrderResource extends JsonResource
             "shipping_method" => $this->shipping_method,
             "total_amount" => $this->total_amount,
             "subtotal_amount" => $this->subtotal_amount,
+            "discount_amount" => $this->discount_amount,
             "shipping_charge" => $this->shipping_charge,
             "note" => $this->note,
             "created_at" => $this->created_at?->format('d/m/Y h:i:s A'),

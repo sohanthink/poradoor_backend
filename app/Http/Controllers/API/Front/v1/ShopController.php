@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\API\Front\v1;
 
+use App\Http\Requests\API\Front\Shop\ProductFilterRequest;
+use App\Http\Resources\API\Front\v1\Product\ProductLiteWeightResource;
 use App\Models\Category;
 use App\Models\Product;
 use App\Response\API\Front\v1\ShopResponse;
@@ -27,8 +29,8 @@ class ShopController extends Controller
     public function categories(){
         return $this->shop_response->category_response(categories: $this->category_service->get_categories());
     }
-    public function product_filter(){
-        // Tomorrow Start From Here
+    public function product_filter(ProductFilterRequest $request){
+        return ProductLiteWeightResource::collection($this->product_service->filter($request->validated()));
     }
     public function product_details(Product $product){
         return $this->shop_response->product_details_response($product);
