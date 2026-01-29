@@ -2,9 +2,10 @@
 
 namespace App\Response\API\Admin\v1;
 
-use App\Http\Resources\API\v1\ProductResource;
+
 use App\Models\Product;
 use App\Traits\APIResponse;
+use App\Http\Resources\API\Admin\v1\ProductResource;
 
 class ProductResponses
 {

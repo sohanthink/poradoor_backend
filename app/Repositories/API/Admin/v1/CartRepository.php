@@ -15,10 +15,11 @@ class CartRepository
         $this->user = auth("sanctum")->user();
     }
     public function get_items_user(): Collection|null{
+        $this->user?->load('cart_items.product');
         return $this->user?->cart_items;
     }
     public function get_items_guest($guest_id): Collection|null{
-        return CartItem::where('guest_id',$guest_id)->get();
+        return CartItem::with('product')->where('guest_id',$guest_id)->get();
     }
     /**
      * Create A New Cart Item Instance
@@ -26,7 +27,7 @@ class CartRepository
      * @return CartItem
      */
     public function create_cart_item(CartDTO $dto): CartItem{
-        return CartItem::create(attributes: $dto->toArray());
+        return CartItem::create(attributes: $dto->to_array());
     }
     public function get_item_by_guest_id(string $guest_id, int $id){
         return CartItem::where('guest_id',$guest_id)->where('id',$id)->first();

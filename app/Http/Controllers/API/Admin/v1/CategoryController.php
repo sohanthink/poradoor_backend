@@ -21,6 +21,9 @@ class CategoryController extends Controller
     public function index(){
         return $this->category_service->get_categories();
     }
+    public function show(Category $category){
+        return $category;
+    }
     public function store(CategoryRequest $request, Category $category = null): JsonResponse{
         $is_create = $category? false: true;
         $category = $this->category_service->save_category(data: $request->validated(),category: $category);

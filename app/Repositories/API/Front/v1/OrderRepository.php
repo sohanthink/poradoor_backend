@@ -2,6 +2,8 @@
 
 namespace App\Repositories\API\Front\V1;
 
+use App\DTOs\Order\OrderUpdateDTO;
+use App\Models\Coupon;
 use App\Models\Order;
 
 class OrderRepository{
@@ -13,5 +15,9 @@ class OrderRepository{
     }
     public function check_exist_by_order_number($order_number){
         return Order::where('order_number',$order_number)->exists();
+    }
+    public function update_order(OrderUpdateDTO $dto, Order $order){
+        $order->update($dto->to_array());
+        return $order;
     }
 }

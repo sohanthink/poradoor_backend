@@ -3,7 +3,7 @@
 namespace App\Traits;
 
 trait DTOBasics{
-    public function toArray(): Array{
+    public function to_array(): Array{
         return (array) $this;
     }
 }

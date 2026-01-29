@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\API\Admin\V1;
+namespace App\Http\Resources\API\Admin\v1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -15,6 +15,7 @@ class ProductResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            "id" => $this->id,
             "name" => $this->title,
             "slug" => $this->slug,
             "hero_image" => get_image_url($this->resource, 'hero_image'),

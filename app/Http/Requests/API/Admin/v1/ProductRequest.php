@@ -21,19 +21,44 @@ class ProductRequest extends FormRequest
      */
     public function rules(): array
     {
+        $is_update = $this->isMethod('put') || $this->isMethod('patch');
+        $product = $this->route('product');
         return [
-            "title" => ["required","string","max:255"],
+            "title" => [
+                $is_update ? "nullable" :"required",
+                "string",
+                "max:255"
+            ],
             "hero_image" => ["nullable", "sometimes","file","image","mimes:png,jpg,jpeg,webp"],
             "secondary_image" => ["nullable", "sometimes","file","image","mimes:png,jpg,jpeg,webp"],
             "images" => ["nullable", "sometimes", "array", "max:5"], 
             "images.*" => ["file", "image", "mimes:png,jpg,jpeg,webp", "max:2048"],
-            "small_desc" => ["required","string","max:512"],
-            "desc" => ["required","string"],
-            "price" => ["required","numeric","min:1"],
+            "small_desc" => [
+                $is_update ? "nullable" :"required",
+                "string",
+                "max:512"
+            ],
+            "desc" => [
+                $is_update ? "nullable" :"required",
+                "string"
+            ],
+            "price" => [
+                $is_update ? "nullable" :"required",
+                "numeric",
+                "min:1"
+            ],
             "regular_price" => ["nullable","numeric","min:1"],
             "atributes" => ["nullable","string"],
-            "quantity" => ["required","numeric","min:1"],
-            "alert_quantity" => ["required","numeric","min:1"],
+            "quantity" => [
+                $is_update ? "nullable" :"required",
+                "numeric",
+                "min:1"
+            ],
+            "alert_quantity" => [
+                $is_update ? "nullable" :"required",
+                "numeric",
+                "min:1"
+            ],
             "status" => ["nullable","sometimes","numeric"],
             "category_id" => ["nullable","exists:categories,id"],
         ];

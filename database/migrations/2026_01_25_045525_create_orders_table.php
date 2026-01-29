@@ -32,6 +32,7 @@ return new class extends Migration
             $table->tinyInteger('shipping_method')->default(ShippingMethod::STANDARD->value);
             $table->decimal('total_amount')->nullable();
             $table->decimal('subtotal_amount')->nullable();
+            $table->decimal('discount_amount')->nullable();
             $table->decimal('shipping_charge')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();

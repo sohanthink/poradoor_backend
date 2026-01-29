@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\API\Admin\V1\Cart;
+namespace App\Http\Requests\API\Front\Shop;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CartRemoveRequest extends FormRequest
+class ProductFilterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,13 +22,15 @@ class CartRemoveRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "guest_id" => ["nullable","sometimes","string","max:50"],
-            "cart_item_id" => ["required","exists:cart_items,id"],
+            "price_from" => ["nullable","numeric","min:1"],
+            "price_to" => ["nullable","numeric","min:2"],
+            "category_slug" => ["nullable","exists:categories,slug"],
+            "discounted" => ["nullable","boolean"],
         ];
     }
-    public function messages(): array{
+    public function messages(){
         return [
-            "cart_item_id.exists" => "Cart Item Not Found",
+            "category_slug.exists" => "Category Does Not Exist",
         ];
     }
 }

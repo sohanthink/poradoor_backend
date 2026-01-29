@@ -3,10 +3,10 @@
 namespace App\Services\API\Admin\v1;
 
 use App\Models\Product;
-use App\DTOs\Product\ProductDTO;
 use App\Helpers\ImageHelper;
-use App\Http\Resources\API\v1\ProductResource;
+use App\DTOs\Product\ProductDTO;
 use App\Repositories\API\Admin\v1\ProductRepository;
+use App\Http\Resources\API\Front\v1\Product\ProductLiteWeightResource;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ProductService
@@ -25,7 +25,7 @@ class ProductService
     public function get_products(): AnonymousResourceCollection
     {
         $products = $this->repository->products();
-        return ProductResource::collection($products);
+        return ProductLiteWeightResource::collection($products);
     }
     /**
      * Create a new product or update existing product
@@ -58,5 +58,9 @@ class ProductService
     public function delete_product(Product $product): bool|null
     {
         return $this->repository->delete($product);
+    }
+
+    public function filter($data){
+        return $this->repository->filter($data);
     }
 }

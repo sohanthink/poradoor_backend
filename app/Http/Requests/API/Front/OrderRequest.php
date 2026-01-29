@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\API\Admin\v1;
+namespace App\Http\Requests\API\Front;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -35,6 +35,7 @@ class OrderRequest extends FormRequest
             "payment_method" => ["required","numeric","min:0","max:1"],
             "shipping_method" => ["required","numeric","min:0","max:3"],
             "currency_id" => ["nullable","numeric","exists:currencies,id"],
+            "coupon" => ["nullable","string","exists:coupons,coupon"],
             "currency_rate" => ["nullable","numeric"],
             "note" => ["nullable","string"],
             "save_shipping_address" => ["required","boolean"],
