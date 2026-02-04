@@ -1,59 +1,117 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# 🛒 Laravel Ecommerce API
 
-## About Laravel
+This is a robust Ecommerce API built with Laravel, designed to handle products, orders, users, and permissions. Follow the instructions below to set up and run the project locally.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🛠 Prerequisites
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Before you begin, ensure you have the following installed on your system:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+-   **PHP** (>= 8.2 recommended)
+    
+-   **Composer**
+    
+-   **MySQL** or **MariaDB**
+    
+-   **Git**
+    
 
-## Learning Laravel
+## 🚀 Installation Guide
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+Follow these steps carefully to set up the project locally:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 1. Clone the Repository
 
-## Laravel Sponsors
+Open your terminal and run the following command to clone the project:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```
+git clone https://github.com/sohanthink/poradoor_backend.git
+cd your-repo-name
 
-### Premium Partners
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 2. Install Dependencies
 
-## Contributing
+Install all required PHP packages via Composer:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```
+composer install
 
-## Code of Conduct
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 3. Setup Environment File
 
-## Security Vulnerabilities
+Copy the example environment file to create your own `.env` file:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```
+cp .env.example .env
 
-## License
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 4. Database Configuration
+
+1.  Create a database in your local SQL server (e.g., `ecommerce_api`).
+    
+2.  Open the `.env` file and update the database details to match your local setup:
+    
+    ```
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=ecommerce_api
+    DB_USERNAME=root
+    DB_PASSWORD=
+    
+    ```
+    
+
+### 5. Generate Application Key
+
+Run the following command to generate a unique encryption key:
+
+```
+php artisan key:generate
+
+```
+
+### 6. Run Migrations & Seeders
+
+This will create all necessary tables and populate them with initial data (like roles and permissions):
+
+```
+php artisan migrate:fresh --seed
+
+```
+
+> **⚠️ Note:** If you encounter the "Specified key was too long" error, please ensure you have added `Schema::defaultStringLength(191);` in your `AppServiceProvider.php` file within the `boot()` method.
+
+### 7. Link Storage (Optional)
+
+If your project manages product images, link the storage folder to the public directory:
+
+```
+php artisan storage:link
+
+```
+
+## 🏃 Running the Project
+
+Start the local development server:
+
+```
+php artisan serve
+
+```
+
+The API will be accessible at: `http://127.0.0.1:8000`
+
+## 💡 Key Commands for Maintenance
+
+-   **Clear Config Cache:** `php artisan config:clear`
+    
+-   **Clear Route Cache:** `php artisan route:clear`
+    
+-   **Clear Application Cache:** `php artisan cache:clear`
+    
+
