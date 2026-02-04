@@ -27,9 +27,11 @@ Open your terminal and run the following command to clone the project:
 
 ```
 git clone https://github.com/sohanthink/poradoor_backend.git
-cd your-repo-name
-
 ```
+```
+cd poradoor_backend
+```
+
 
 ### 2. Install Dependencies
 
@@ -51,7 +53,7 @@ cp .env.example .env
 
 ### 4. Database Configuration
 
-1.  Create a database in your local SQL server (e.g., `ecommerce_api`).
+1.  Create a database in your local SQL server (e.g., `poradoor_backend`).
     
 2.  Open the `.env` file and update the database details to match your local setup:
     
@@ -59,7 +61,7 @@ cp .env.example .env
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
     DB_PORT=3306
-    DB_DATABASE=ecommerce_api
+    DB_DATABASE=poradoor_backend
     DB_USERNAME=root
     DB_PASSWORD=
     
